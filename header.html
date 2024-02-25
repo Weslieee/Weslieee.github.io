@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BOOKER导航</title>
+    <link href="css/global.css" rel="stylesheet" type="text/css" />
+    <link href="css/template.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script>
+		$(function(){
+			$("#menu").mouseenter(function(){
+			$("#dd_menu_top_down").slideDown(1000);
+			})
+			$("#menu").mouseleave(function(){
+				$("#dd_menu_top_down").slideUp(1000);
+				})
+			})
+    	
+    </script>
+</head>
+<body>
+    
+<!--顶部-->
+<div class="header_top">
+    <div class="header_top_left">Welcome to BOOKER &nbsp;&nbsp;&nbsp;&nbsp;<a href="login.html" target="_parent">点击登录/注册</a></div>
+    <div class="header_top_right">
+        <ul>
+            <li><a href="#" target="_self">帮助</a></li>
+            <li>|</li>
+            <li><a href="#" target="_self">个性化推荐</a></li>
+            <li>|</li>
+            <li><a href="shopping.html" target="_parent">购物车</a></li>
+            <li><img src="images/shopcar.png"  width=15px  ></li>
+            <li>|</li>
+            <li><a href="index.html" target="_parent">主页</a></li>
+        </ul>
+    </div>
+</div>
+
+<!--搜索-->
+
+    <div class="header_serach_mid">
+        <ul id="header_serach_mid_menu">
+            <li><input id="header_serach" type="text" class="header_input_search" /></li>
+            <li><input type="image" class="header_secrch_btn" src="images/search.png" width="18px" /></li>
+            <li><img src="images/dd_arrow_right.gif" alt="arrow"/> <a href="#" target="_self">高级搜索</a></li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li><img src="images/hot.png" width="18px"   alt="大家都在搜"/></li>
+            <li><a href="#" target="_self">雅思</a></li>
+            <li>|</li>
+            <li><a href="#" target="_self">四六级</a></li>
+            <li>|</li>
+            <li><a href="#" target="_self">游戏</a></li>
+            <li>|</li>
+            <li><a href="#" target="_self">生活</a></li>
+            <li>|</li>
+            <li><a href="#" target="_self">新概念英语</a></li>
+            <li>|</li>
+            <li><a href="#" target="_self">更多&gt;&gt;</a></li>
+        </ul>
+    </div>
+
+
+ 
+
+<div class="ttt">
+    <div class="dd_index_top_adver""><img src="images/bg.png" width="900px" height="235px"
+        alt="通栏广告图片" /></div>
+</div>
+    
+</body>
+</html>

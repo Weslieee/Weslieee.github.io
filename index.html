@@ -1,0 +1,422 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.wlogo3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BOOKER首页</title>
+    <link href="css/global.css" rel="stylesheet" type="text/css" />
+    <link href="css/layout.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script>
+        $(function () {
+             $("#right").find("a").click(function () {
+                 $("#right").hide();
+             })
+            function scrollImg() {
+                var $img = $("#scroll_img").children("li");
+                var $num = $("#scroll_number").children("li");
+                var index = 0;
+                var flag = false;
+                $num.eq(index).addClass("scroll_number_over").stop(true, true).siblings().removeClass("scroll_number_over"); 
+                $num.mouseover(function () {
+                    flag = true;
+                    index = $num.index($(this));
+                    $img.eq(index).stop(true, true).fadeIn().siblings().fadeOut();
+                    $(this).addClass("scroll_number_over").stop(true, true).siblings().removeClass("scroll_number_over");
+                }).mouseout(function () {
+                    flag = false;
+                })
+                setInterval(function () {
+                    if (flag)
+                        return;
+                    index++;
+                    if (index > $img.length) {
+                        index = 0;
+                    }
+                    $img.eq(index).stop(true, true).fadeIn().siblings().fadeOut();
+                    $num.eq(index).addClass("scroll_number_over").stop(true, true).siblings().removeClass("scroll_number_over");
+
+                }, 3000)
+            }
+            scrollImg();
+
+            $("#bookTab").children(".book_new").find("[id]").mouseover(function () {
+                var id = "#book_" + $(this).attr("id");
+                $("#bookTab").children(".book_class").find("[id]").hide();
+                $(id).show();
+            })
+
+            $("#bookTab").children(".book_class").find("dd").mouseover(function () {
+                $(this).css("border", "2px solid #F96");
+            }).mouseout(function () {
+                $(this).css("border", "2px solid #fff");
+            })
+
+            function scrollTop() {
+                var margintop = 0;
+                var flag = false;
+                setInterval(function () {
+                    if (flag) return;
+                    $("#express").children("li").first().animate({ "marginTop": margintop-- }, 0, function () { 
+                        if ((-margintop) > $(this).height()) {
+                            $(this).css("margin-top", 0).appendTo("#express");
+                            margintop = 0;
+                        }
+                    })
+                }, 20)
+                $("#express").mouseover(function () {
+                    flag = true;
+                }).mouseout(function () {
+                    flag = false;
+                })
+            }
+            scrollTop();
+        })
+    </script>
+</head>
+
+<body>
+    <div id="right" class="right">
+        <div class="dd_close" id="dd_close"><a href="javascript:void(0);">关闭</a></div>
+        <img src="images/dd_scroll.jpg" id="right1" />
+    </div>
+
+    <div id="header">
+        <iframe src="header.html" height="326px" width="970px" frameborder="0"></iframe>
+    </div>
+
+    <div id="main">
+        <div id="catList">
+            <!--推荐分类-->
+            <div class="book_sort">
+                <div class="book_sort_bg">推荐分类</div>
+                <div class="book_sort_bottom" style="border-bottom:0px;">计算机 | 英语 | 人工智能</div>
+            </div>
+            <!--图书商品分类开始-->
+            <div class="book_sort">
+                <div class="book_sort_bg"><img src="images/dd_book_cate_icon.gif" alt="图书" /> 课外图书商品分类</div>
+                <div class="book_cate">[科技]</div>
+                <div class="book_sort_bottom">科普 | 建筑 | 医学 | 计算机 | 农林 | 自然科学 | 工业 | 通信</div>
+                <div class="book_cate">[社科]</div>
+                <div class="book_sort_bottom">文化 | 历史 | 宗教 | 古籍 | 政治 | 历史 | 法律 | 经济 | 社会科学 | 心理学</div>
+                <div class="book_cate">[小说]</div>
+                <div class="book_sort_bottom">推理 | 传记 | 玄幻 | 科幻 | 校园 | 穿越 | 魔幻 | 恐怖</div>
+                <div class="book_cate">[文艺]</div>
+                <div class="book_sort_bottom">戏剧 | 喜剧 | 悲剧 | 话剧</div>
+                <div class="book_cate">[青春]</div>
+                <div class="book_sort_bottom">青春文学 | 动漫 | 幽默</div>
+                <div class="book_cate">[励志/成功]</div>
+                <div class="book_sort_bottom">修养 | 成功 | 职场 | 沟通</div>
+                <div class="book_cate">[少儿]</div>
+                <div class="book_sort_bottom">文学 | 科普 | 图画</div>
+                <div class="book_cate">[生活]</div>
+                <div class="book_sort_bottom">保健 | 美食 | 旅游 | 收藏 | 生活 | 体育 | 地图 | 理财</div>
+                <div class="book_cate">[管理]</div>
+                <div class="book_sort_bottom">管理 | 金融 | 营销 | 会计</div>
+                <div class="book_cate">[教育]</div>
+                <div class="book_sort_bottom">教材 | 哲学| 宗教</div>
+                <div class="book_cate">[期刊]</div>
+                <div class="book_sort_bottom">环球人物 | 新周刊 | 中国国家地理</div>
+                <div class="book_cate">[工具书] </div>
+            </div>
+            <!--图书商品分类结束-->
+        </div>
+
+        <div id="content">
+            <div class="scroll_mid">
+                <ul id="scroll_img">
+                    <li><img src="images/dd_scroll_1.jpg" width="500px" height="180px" /></li>
+                    <li><img src="images/dd_scroll_2.jpg" width="500px" height="180px" /></li>
+                    <li><img src="images/dd_scroll_3.jpg" width="500px" height="180px" /></li>
+                    <li><img src="images/dd_scroll_4.jpg" width="500px" height="180px" /></li>
+                    <li><img src="images/dd_scroll_5.jpg" width="500px" height="180px" /></li>
+                    <li><img src="images/dd_scroll_6.jpg" width="500px" height="180px" /></li>
+                </ul>
+                <ul id="scroll_number">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ul>
+            </div>
+            <div class="scroll_end"></div>
+            <div id="bookTab" class="book_sort">
+                <div class="book_new">
+                    <div class="book_left">大学生二手书</div>
+                    <div class="book_type book_type_out" id="history">哲学</div>
+                    <div class="book_type" id="family">物理</div>
+                    <div class="book_type" id="culture">数学</div>
+                    <div class="book_type" id="novel">英语</div>
+                    <div class="book_right"><a href="#">更多&gt;&gt;</a></div>
+                </div>
+                <div class="book_class" style="height:250px;">
+                    <dl id="book_history">
+                        <dt><img src="images/dd_history_1.jpg" width="70px" height="70px" alt="history" /></dt>
+                        <dd>
+                            <font class="book_title">哲学简史</font><br />
+                            作者：伯特兰·罗素<br />
+                            出版社：北京理工大学出版社<br />
+                            <font class="book_publish">出版时间：2020年12月</font><br />
+                            价格：￥14.99
+                        </dd>
+                        <dt><img src="images/dd_history_2.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">哲学鸟飞罗系列</font><br />
+                            作者：碧姬·拉贝 <br />
+                            出版社：接力出版社 <br />
+                            <font class="book_publish">出版时间：2018年5月</font><br />
+                            价格：￥84.00
+                        </dd>
+                        <dt><img src="images/dd_history_3.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">哲学100问</font><br />
+                            作者：书杰<br />
+                            出版社：华文出版社 <br />
+                            <font class="book_publish"> 出版时间：2020年10月</font><br />
+                            价格：￥93.10
+                        </dd>
+                        <dt><img src="images/dd_history_4.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">西方哲学史</font><br />
+                            作者：弗兰克·梯利<br />
+                            出版社：吉林出版社 <br />
+                            <font class="book_publish">出版时间：2018年3月</font><br />
+                            价格：￥59.00
+                        </dd>
+                    </dl>
+                    <dl id="book_family" class="book_none">
+                        <dt><img src="images/dd_family_1.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">大学物理</font><br />
+                            作者： 闵琦<br />
+                            出版社：机械工业出版社 <br />
+                            <font class="book_publish">出版时间：2019年10月</font><br />
+                            价格：￥28.80
+                        </dd>
+                        <dt><img src="images/dd_family_2.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">大学物理实验</font><br />
+                            作者：胡波<br />
+                            出版社：华中科技大学出版社 <br />
+                            <font class="book_publish">出版时间：2013年5月</font><br />
+                            价格：￥20.00
+                        </dd>
+                        <dt><img src="images/dd_family_3.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">物理的奥秘</font><br />
+                            作者：贝列里门<br />
+                            出版社：安徽人民出版社 <br />
+                            <font class="book_publish"> 出版时间：2020年8月</font><br />
+                            价格：￥27.55
+                        </dd>
+                        <dt><img src="images/dd_family_4.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">能量</font><br />
+                            作者：萨利·摩根 <br />
+                            出版社：上海出版社 <br />
+                            <font class="book_publish">出版时间：2018年7月</font><br />
+                            价格：￥17.10
+                        </dd>
+                    </dl>
+                    <dl id="book_culture" class="book_none">
+                        <dt><img src="images/dd_culture_1.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">高等数学</font><br />
+                            作者：龚乐春<br />
+                            出版社：浙江大学出版社 <br />
+                            <font class="book_publish">出版时间：2012年10月</font><br />
+                            价格：￥26.00
+                        </dd>
+                        <dt><img src="images/dd_culture_2.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">线性代数</font><br />
+                            作者：刘锡平<br />
+                            出版社：科学出版社 <br />
+                            <font class="book_publish">出版时间：2010年10月</font><br />
+                            价格：￥25.00
+                        </dd>
+                        <dt><img src="images/dd_culture_3.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">离散数学</font><br />
+                            作者：费洪晓<br />
+                            出版社：天津大学出版社 <br />
+                            <font class="book_publish"> 出版时间：2019年8月</font><br />
+                            价格：￥26.00
+                        </dd>
+                        <dt><img src="images/dd_culture_4.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">微积分</font><br />
+                            作者：马锐 <br />
+                            出版社：高等教育出版社 <br />
+                            <font class="book_publish">出版时间：2020年1月</font><br />
+                            价格：￥20.00
+                        </dd>
+                    </dl>
+                    <dl id="book_novel" class="book_none">
+                        <dt><img src="images/dd_novel_1.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">大学英语四级真题</font><br />
+                            作者：新东方<br />
+                            出版社：群言出版社 <br />
+                            <font class="book_publish">出版时间：2022年12月</font><br />
+                            价格：￥15.80
+                        </dd>
+                        <dt><img src="images/dd_novel_2.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">大学英语阅读</font><br />
+                            作者：隋学本<br />
+                            出版社：中国石化出版社 <br />
+                            <font class="book_publish">出版时间：2021年7月</font><br />
+                            价格：￥19.00
+                        </dd>
+                        <dt><img src="images/dd_novel_3.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">大学英语六级真题</font><br />
+                            作者：尚晓华 <br />
+                            出版社：大连海事大学出版社 <br />
+                            <font class="book_publish"> 出版时间：2018年1月</font><br />
+                            价格：￥17.50
+                        </dd>
+                        <dt><img src="images/dd_novel_4.jpg" alt="history" width="70px" height="70px" /></dt>
+                        <dd>
+                            <font class="book_title">大学英语写作教程</font><br />
+                            作者：潘钧<br />
+                            出版社：复旦大学出版社 <br />
+                            <font class="book_publish">出版时间：2019年2月</font><br />
+                            价格：￥20.00
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="book_sort">
+                <div class="book_new">
+                    <div class="book_left">大学生阅读书目推荐</div>
+                </div>
+                <div class="book_class" style="height:380px;">
+                    <dl id="book_focus">
+                        <dt><img src="images/dd_focus_1.jpg" alt="focus" width="80px" height="90px"/></dt>
+                        <dt><img src="images/dd_focus_2.jpg" alt="focus" width="80px" height="90px" /></dt>
+                        <dt><img src="images/dd_focus_3.jpg" alt="focus" width="80px" height="90px" /></dt>
+                        <dt><img src="images/dd_focus_4.jpg" alt="focus" width="80px" height="90px" /></dt>
+                        <dd><a href="#" class="blue"> 《活着》</a></dd>
+                        <dd><a href="#" class="blue">《动物农场》</a></dd>
+                        <dd><a href="#" class="blue">《瓦尔登湖》</a></dd>
+                        <dd><a href="#" class="blue">《自控力》</a></dd>
+                        <dd class="htt">定价：￥14.25<br />
+                        <dd class="htt">定价：￥28.00<br />
+                        <dd class="htt">定价：￥29.00<br />
+                        <dd class="htt">定价：￥20.00<br />
+                        <dt><img src="images/dd_focus_5.jpg" alt="focus" width="80px" height="90px" /></dt>
+                        <dt><img src="images/dd_focus_6.jpg" alt="focus" width="80px" height="90px" /></dt>
+                        <dt><img src="images/dd_focus_7.jpg" alt="focus" width="80px" height="90px" /></dt>
+                        <dt><img src="images/dd_focus_8.jpg" alt="focus" width="80px" height="90px" /></dt>
+                        <dd><a href="#" class="blue">《复活》</a></dd>
+                        <dd><a href="#" class="blue">《百年孤独》</a></dd>
+                        <dd><a href="#" class="blue">《人间失格》</a></dd>
+                        <dd><a href="#" class="blue">《围城》</a></dd>
+                        <dd class="htt">定价：￥22.00<br />
+                        <dd class="htt">定价：￥23.00<br />
+                        <dd class="htt">定价：￥19.00<br />
+                        <dd class="htt">定价：￥18.00<br />
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div id="silder">
+            <!--经典语录-->
+            <div class="book_sort">
+                <div class="book_sort_bg"><img src="images/knowledge.png" alt="mess"  width="17px"
+                        style=" vertical-align:text-bottom;" />为什么要读书？</div>
+                <div class="book_class">
+                    <div id="dome">
+                        <div id="dome1">
+                            <ul id="express">
+                                <li>读过一本好书，像交了一个益友</li>
+                                <li>读书破万卷，下笔如有神。</li>
+                                <li>不读书的人，思想就会停止。</li>
+                                <li>凡读无益之书，皆是玩物丧志。</li>
+                                <li>读书对于智慧，就象体操对于身</li>
+                                <li> 读书不知味，不如束高阁。</li>
+                                <li> 进学致和，行方思远。</li>
+                                <li>兴于《诗》，立于礼，成于乐。</li>
+                                <li>书籍使人们成为宇宙的主人</li>
+                                <li>书籍是人类思想的宝库</li>
+                                <li> 万般皆下品，唯有读书高</li>
+                                <li>好读书，不求甚解。——陶渊明</li>
+                                <li>书籍犹如朋友，必须慎重选择</li>
+                                <li>书籍是人类知识的总统</li>
+                                <li>不怨天，不尤人，下学而上达</li>
+                                <li>不动笔墨不读书。</li>
+                                <li>书籍是造就灵魂的工具</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="book_express_avder"> <img src="images/booktree.webp" width="200px" height="250px" alt="adver"
+                        style="margin-bottom:5px;" /></div>
+            </div>
+
+            <div class="book_sort">
+                <div class="book_seven_title">热度榜 <img src="images/rank.png" alt="bang" width="18px" /></div>
+                <div class="book_seven_border">
+                    <div class="book_seven_top">
+                        <ul id="book_seven_cate">
+                            <li>社科</li>
+                            <li>数学</li>
+                            <li>英语</li>
+                            <li>电信</li>
+                            <li>小说</li>
+                        </ul>
+                    </div>
+                    <div class="book_seven_content">
+                        <div class="book_seven_content_left">
+                            <dl id="book_seven_number">
+                                <dt><img src="images/dd_book_no_01.gif" alt="book" /></dt>
+                                <dt><img src="images/dd_book_no_02.gif" alt="book" /></dt>
+                                <dt><img src="images/dd_book_no_03.gif" alt="book" /></dt>
+                                <dd><img src="images/dd_book_no_04.gif" alt="book" /></dd>
+                                <dd><img src="images/dd_book_no_05.gif" alt="book" /></dd>
+
+                            </dl>
+                        </div>
+                        <div class="book_seven_content_right">
+                            <div id="book_seven_hearten">
+                                <dl>
+                                    <dt><img src="images/baiyex.jpg" alt="hearten"  width="50px" height="70px"/></dt>
+                                    <dd>
+                                        <a href="#" class="ltt">《白夜行》</a><br />
+                                        作者：东野圭吾<br />
+                                        价格：￥15
+                                    </dd>
+                                    <dt><img src="images/maitian.webp" alt="hearten"  width="50px" height="60px" /></dt>
+                                    <dd>
+                                        <a href="#" class="ltt">《麦田里的守望者》</a><br />
+                                        作者：J.D.塞林格<br />
+                                        价格：￥17
+                                    </dd>
+                                    <dt><img src="images/santi.webp" alt="hearten"   width="50px" height="60px"/></dt>
+                                    <dd>
+                                        <a href="#" class="ltt">《三体》</a><br />
+                                        作者：刘慈欣<br />
+                                        价格：￥20
+                                    </dd>
+                                </dl>
+                                <ul class="por">
+                                    <li><a href="#" class="ltt">《战争与和平》</a></li>
+                                    <li><a href="#" class="ltt">《挪威的森林》</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</body>
+
+</html>

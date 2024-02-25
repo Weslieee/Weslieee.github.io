@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BOOKER购物车</title>
+    <link href="css/global.css" rel="stylesheet" type="text/css" />
+    <link href="css/layout.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script>
+    $(function(){
+		$("#shopping_commend_arrow").toggle(function(){
+			$(this).attr("src","images/shopping_arrow_down.gif");
+			$("#shopping_commend_sort").hide();	
+			},function(){
+			$(this).attr("src","images/shopping_arrow_up.gif");
+			$("#shopping_commend_sort").show();
+				})
+		$(".shopping_product_list :odd").css("background-color","#FCF");
+		function totalPrice(){
+			var percents=0,prePrices=0,prices=0;
+			$("#myTableProduct").find("tr").each(function(i,ele){
+				var num = $(ele).find(".shopping_product_list_5").find("input").val();
+				percents+=parseInt($(ele).find(".shopping_product_list_2").text())*num;
+				var price = parseInt($(ele).find(".shopping_product_list_4").find("label").text().replace(".",""))*num;
+				prices+=price;
+				var prePrice=parseInt($(ele).find(".shopping_product_list_3").find("label").text().replace(".",""))*num;
+				prePrices+=prePrice;
+				});
+				$("#product_integral").text(percents);
+				$("#product_save").text((prePrices-prices)/100);
+				$("#product_total").text(prices/100);
+				return prices/100;
+			}
+			totalPrice();
+			
+		$("a[class='blue']").click(function(){
+			if(confirm("确定删除吗？")){
+				$(this).parents("tr").remove();
+				totalPrice();
+				}
+			})
+			
+		$(".shopping_product_list_5").find("input").change(function(){
+			var value = $(this).val();
+			if(value=="" || !(/^\d*[1-9]\d*$/.test(value))){
+				alert("数量不能为空，且必须为正整数");
+				$(this).val(1); 
+				}
+			var t = totalPrice();
+			alert("修改成功，商品总金额为"+t+"元");
+			})
+})
+    </script>
+</head>
+
+<body>
+<div id="header"><iframe src="header.html" height="326px" width="970px" frameborder="0"></iframe></div>
+<div id="main">
+    <div>&nbsp;&nbsp;<img src="images/shopcar.png" alt="shopping" width="38px"/> </div>
+    <div class="shopping_commend">
+        <div class="shopping_commend_left">根据您挑选的商品，BOOKER为您推荐</div>
+        <div class="shopping_commend_right"><img src="images/shopping_arrow_up.gif" alt="shopping" id="shopping_commend_arrow"/></div>
+    </div>
+    <div id="shopping_commend_sort">
+        <div class="shopping_commend_sort_left">
+            <ul>
+                <li class="shopping_commend_list_1">·<a href="#" class="htt">《哲学简史》</a></li>
+                <li class="shopping_commend_list_2">￥39.00</li>
+                <li class="shopping_commend_list_3">￥29.30</li>
+                <li class="shopping_commend_list_4"><a href="#" class="shopping_yellow">购买</a></li>
+            </ul>
+            <ul>
+                <li class="shopping_commend_list_1">·<a href="#" class="htt">《大学英语语法》</a></li>
+                <li class="shopping_commend_list_2">￥28.00</li>
+                <li class="shopping_commend_list_3">￥19.40</li>
+                <li class="shopping_commend_list_4"><a href="#" class="shopping_yellow">购买</a></li>
+            </ul>
+            <ul>
+                <li class="shopping_commend_list_1">·<a href="#" class="htt">《三体》</a></li>
+                <li class="shopping_commend_list_2">￥32.80</li>
+                <li class="shopping_commend_list_3">￥25.10</li>
+                <li class="shopping_commend_list_4"><a href="#" class="shopping_yellow">购买</a></li>
+            </ul>
+            <ul>
+                <li class="shopping_commend_list_1">·<a href="#" class="htt">《大学生形势与政策》</a></li>
+                <li class="shopping_commend_list_2">￥36.00</li>
+                <li class="shopping_commend_list_3">￥27.70</li>
+                <li class="shopping_commend_list_4"><a href="#" class="shopping_yellow">购买</a></li>
+            </ul>
+        </div>
+        <div class="shopping_commend_sort_mid"></div>
+        <div class="shopping_commend_sort_left">
+            <ul>
+                <li class="shopping_commend_list_1">·<a href="#" class="htt">《大学计算机基础》</a></li>
+                <li class="shopping_commend_list_2">￥59.00</li>
+                <li class="shopping_commend_list_3">￥47.20</li>
+                <li class="shopping_commend_list_4"><a href="#" class="shopping_yellow">购买</a></li>
+            </ul>
+            <ul>
+                <li class="shopping_commend_list_1">·<a href="#" class="htt">《音乐欣赏》</a></li>
+                <li class="shopping_commend_list_2">￥34.80</li>
+                <li class="shopping_commend_list_3">￥20.60</li>
+                <li class="shopping_commend_list_4"><a href="#" class="shopping_yellow">购买</a></li>
+            </ul>
+            <ul>
+                <li class="shopping_commend_list_1">·<a href="#" class="htt">《大学数学竞赛指南》</a></li>
+                <li class="shopping_commend_list_2">￥39.80</li>
+                <li class="shopping_commend_list_3">￥30.50</li>
+                <li class="shopping_commend_list_4"><a href="#" class="shopping_yellow">购买</a></li>
+            </ul>
+            <ul>
+                <li class="shopping_commend_list_1">·<a href="#" class="htt">《创新创业基础》</a></li>
+                <li class="shopping_commend_list_2">￥25.00</li>
+                <li class="shopping_commend_list_3">￥17.30</li>
+                <li class="shopping_commend_list_4"><a href="#" class="shopping_yellow">购买</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="shopping_list_top">您已选购以下商品</div>
+    <div class="shopping_list_border">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr class="shopping_list_title">
+                <td class="shopping_list_title_1">商品名</td>
+                <td class="shopping_list_title_2">单品积分</td>
+                <td class="shopping_list_title_3">市场价</td>
+                <td class="shopping_list_title_4">折扣价</td>
+                <td class="shopping_list_title_5">数量</td>
+                <td class="shopping_list_title_6">删除</td>
+            </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" id="myTableProduct">
+            <tr class="shopping_product_list" id="shoppingProduct_01">
+                <td class="shopping_product_list_1"><a href="#" class="blue">《活着》</a></td>
+                <td class="shopping_product_list_2"><label>175</label></td>
+                <td class="shopping_product_list_3">￥<label>23.75</label></td>
+                <td class="shopping_product_list_4">￥<label>14.25 </label>(六折)</td>
+                <td class="shopping_product_list_5"><input type="text" value="1"/></td>
+                <td class="shopping_product_list_6"><a href="javascript:void(0)" class="blue">删除</a></td>
+            </tr>
+            <tr class="shopping_product_list" id="shoppingProduct_02">
+                <td class="shopping_product_list_1"><a href="#" class="blue"> 《大学英语四级真题》</a></td>
+                <td class="shopping_product_list_2"><label>156</label></td>
+                <td class="shopping_product_list_3">￥<label>22.50</label></td>
+                <td class="shopping_product_list_4">￥<label>15.80</label>(七折)</td>
+                <td class="shopping_product_list_5"><input type="text" value="1"/></td>
+                <td class="shopping_product_list_6"><a href="javascript:void(0)" class="blue">删除</a></td>
+            </tr>
+            <tr class="shopping_product_list" id="shoppingProduct_03">
+                <td class="shopping_product_list_1"><a href="#" class="blue">《大学英语写作教程》</a></td>
+                <td class="shopping_product_list_2"><label>133</label></td>
+                <td class="shopping_product_list_3">￥<label>25.00</label></td>
+                <td class="shopping_product_list_4">￥<label>20.00</label> (八折)</td>
+                <td class="shopping_product_list_5"><input type="text" value="2"/></td>
+                <td class="shopping_product_list_6"><a href="javascript:void(0)" class="blue">删除</a></td>
+            </tr>
+            <tr class="shopping_product_list" id="shoppingProduct_04">
+                <td class="shopping_product_list_1"><a href="#" class="blue">《离散数学》</a></td>
+                <td class="shopping_product_list_2"><label>200</label></td>
+                <td class="shopping_product_list_3">￥<label>35.00</label></td>
+                <td class="shopping_product_list_4">￥<label>26.00</label> (七五折)</td>
+                <td class="shopping_product_list_5"><input type="text" value="1"/></td>
+                <td class="shopping_product_list_6"><a href="javascript:void(0)" class="blue">删除</a></td>
+            </tr>
+            <tr class="shopping_product_list" id="shoppingProduct_05">
+                <td class="shopping_product_list_1"><a href="#" class="blue">《微积分》</a></td>
+                <td class="shopping_product_list_2"><label>120</label></td>
+                <td class="shopping_product_list_3">￥<label>25.00</label></td>
+                <td class="shopping_product_list_4">￥<label>20.00</label> (八折)</td>
+                <td class="shopping_product_list_5"><input type="text" value="1"/></td>
+                <td class="shopping_product_list_6"><a href="javascript:void(0)" class="blue">删除</a></td>
+            </tr>
+            <tr class="shopping_product_list" id="shoppingProduct_06">
+                <td class="shopping_product_list_1"><a href="#" class="blue">《百年孤独》</a></td>
+                <td class="shopping_product_list_2"><label>120</label></td>
+                <td class="shopping_product_list_3">￥<label>27.00</label></td>
+                <td class="shopping_product_list_4">￥<label>23.00</label> (八五折)</td>
+                <td class="shopping_product_list_5"><input type="text" value="1"/></td>
+                <td class="shopping_product_list_6"><a href="javascript:void(0)" class="blue">删除</a></td>
+            </tr>
+        </table>
+        <div class="shopping_list_end">
+            <div><a id="removeAllProduct" href="javascript:void(0);">清空购物车</a></div>
+            <ul>
+                <li class="shopping_list_end_1"><input name="" type="image" src="images/pay.png" width="30px"/></li>
+                <li class="shopping_list_end_2">￥<label id="product_total"></label></li>
+                <li class="shopping_list_end_3">商品金额总计：</li>
+                <li  class="shopping_list_end_4">您共节省金额：￥<label class="shopping_list_end_yellow" id="product_save"></label><br/>
+                    可获商品积分：<label class="shopping_list_end_yellow" id="product_integral"></label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
